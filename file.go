@@ -8,7 +8,6 @@ import (
 )
 
 //文件日志写入器
-//实现:ILogWriter
 type FileLogWriter struct {
 	file   *os.File      //日志文件
 	writer *bufio.Writer //写入工具
@@ -62,7 +61,7 @@ func (this *FileLogWriter) Write(log string) {
 	var date = time.Now()
 	var err = this.createLogFile(date)
 	if err == nil {
-		this.writer.WriteString(date.Format("2006-01-02 15:04:05 ") + log + "\n")
+		this.writer.WriteString(log + "\n")
 		this.writer.Flush()
 	} else {
 		fmt.Println("写入日志出错:" + err.Error())

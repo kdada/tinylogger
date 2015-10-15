@@ -1,12 +1,8 @@
 package logger
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
 //控制台日志写入器
-//实现:ILogWriter
 type ConsoleLogWriter struct {
 }
 
@@ -17,7 +13,7 @@ func NewConsoleLogWriter() (*ConsoleLogWriter, error) {
 
 // Write 写入日志
 func (this *ConsoleLogWriter) Write(log string) {
-	fmt.Println(time.Now().Format("2006-01-02 15:04:05 ") + log)
+	fmt.Println(log)
 }
 
 // AsyncWrite 异步写入日志

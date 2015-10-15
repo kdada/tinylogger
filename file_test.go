@@ -3,9 +3,10 @@ package logger
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
-var fileLogger ILogger
+var fileLogger Logger
 
 //测试输出
 func TestFileLoggerOutput(t *testing.T) {
@@ -21,12 +22,12 @@ func TestFileLoggerOutput(t *testing.T) {
 	logger.WriteLog(LogLevelInfo, log)
 	logger.WriteLog(LogLevelException, log)
 	logger.WriteLog(LogLevelError, log)
+	time.Sleep(1 * time.Second)
 }
 
-//性能测试 100goroutine测试
+//性能测试
 func BenchmarkFileLoggerOutput(b *testing.B) {
 	var logger = fileLogger
-	b.SetParallelism(100)
 	b.RunParallel(func(pb *testing.PB) {
 		var i = 0
 		for pb.Next() {
@@ -44,5 +45,4 @@ func BenchmarkFileLoggerOutput(b *testing.B) {
 			logger.WriteLog(LogLevelError, log)
 		}
 	})
-
 }

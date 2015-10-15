@@ -3,9 +3,10 @@ package logger
 import (
 	"os"
 	"testing"
+	"time"
 )
 
-var consoleLogger ILogger
+var consoleLogger Logger
 
 func TestMain(m *testing.M) {
 	consoleLogger = NewConsoleLogger()
@@ -27,12 +28,12 @@ func TestConsoleLoggerOutput(t *testing.T) {
 	logger.WriteLog(LogLevelInfo, log)
 	logger.WriteLog(LogLevelException, log)
 	logger.WriteLog(LogLevelError, log)
+	time.Sleep(1 * time.Second)
 }
 
-//性能测试 100goroutine测试
+//性能测试
 func BenchmarkConsoleLoggerOutput(b *testing.B) {
 	var logger = consoleLogger
-	b.SetParallelism(100)
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
 			var log = "B:测试测试"
@@ -48,5 +49,4 @@ func BenchmarkConsoleLoggerOutput(b *testing.B) {
 			logger.WriteLog(LogLevelError, log)
 		}
 	})
-
 }
