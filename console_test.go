@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -9,8 +10,17 @@ import (
 var consoleLogger Logger
 
 func TestMain(m *testing.M) {
-	consoleLogger = NewConsoleLogger()
-	fileLogger = NewFileLogger()
+	var err error
+	consoleLogger, err = NewLogger(LoggerTypeConsole)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fileLogger, err = NewLogger(LoggerTypeFile)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	os.Exit(m.Run())
 }
 

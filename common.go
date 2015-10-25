@@ -1,4 +1,3 @@
-// logger 包实现了一个控制台或文件日志均可用的日志记录器
 package logger
 
 import (
@@ -28,8 +27,8 @@ func newLogger() *logger {
 	return logger
 }
 
-// NewConsoleLogger 创建控制台日志记录器
-func NewConsoleLogger() Logger {
+// newConsoleLogger 创建控制台日志记录器
+func newConsoleLogger() (Logger, error) {
 	var logger = newLogger()
 	var writer, err = NewConsoleLogWriter()
 	if err != nil {
@@ -37,11 +36,11 @@ func NewConsoleLogger() Logger {
 	}
 	logger.logWriter = writer
 	logger.logWriter.AsyncWrite(logger.logChannel)
-	return logger
+	return logger, nil
 }
 
-// NewFileLogger 创建文件日志记录器
-func NewFileLogger() Logger {
+// newFileLogger 创建文件日志记录器
+func newFileLogger() (Logger, error) {
 	var logger = newLogger()
 	var writer, err = NewFileLogWriter()
 	if err != nil {
@@ -49,7 +48,7 @@ func NewFileLogger() Logger {
 	}
 	logger.logWriter = writer
 	logger.logWriter.AsyncWrite(logger.logChannel)
-	return logger
+	return logger, nil
 }
 
 // LogLevel 得到日志等级是否输出

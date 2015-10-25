@@ -1,7 +1,7 @@
 package logger
 
 //默认日志记录器
-var defaultLogger Logger = NewFileLogger()
+var defaultLogger Logger
 
 // DefaultLogger 返回默认日志记录器(默认为文件日志记录器)
 func DefaultLogger() Logger {
@@ -12,7 +12,3 @@ func DefaultLogger() Logger {
 func SetDefaultLogger(logger Logger) {
 	defaultLogger = logger
 }
-
-
-
-
