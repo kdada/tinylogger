@@ -16,12 +16,12 @@ import (
 )
 
 func main() {
-	//logger包默认日志使用的是文件日志
-	logger.DefaultLogger().WriteDebugLog("文件日志测试")
-	//创建一个控制台日志
-	var l = logger.NewConsoleLogger()
-	l.WriteDebugLog("控制台日志测试")
-	//所有日志默认为异步模式,因此需要在主线程中等待一会
+	//logger包默认日志使用的是控制台同步日志
+	logger.DefaultLogger().WriteDebugLog("控制台日志测试")
+	//创建一个文件异步日志
+	var l = logger.NewFileLogWriter()
+	l.WriteDebugLog("文件日志测试")
+	//文件日志默认为异步模式,因此需要在主线程中等待一会
 	time.Sleep(1 * time.Second)
 }
 ```
