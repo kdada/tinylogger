@@ -17,11 +17,6 @@ func TestFileLoggerOutput(t *testing.T) {
 	logger.WriteExceptionLog(log)
 	logger.WriteErrorLog(log)
 
-	log += "type"
-	logger.WriteLog(LogLevelDebug, log)
-	logger.WriteLog(LogLevelInfo, log)
-	logger.WriteLog(LogLevelException, log)
-	logger.WriteLog(LogLevelError, log)
 	time.Sleep(1 * time.Second)
 }
 
@@ -38,11 +33,6 @@ func BenchmarkFileLoggerOutput(b *testing.B) {
 			logger.WriteExceptionLog(log)
 			logger.WriteErrorLog(log)
 
-			log += "type"
-			logger.WriteLog(LogLevelDebug, log)
-			logger.WriteLog(LogLevelInfo, log)
-			logger.WriteLog(LogLevelException, log)
-			logger.WriteLog(LogLevelError, log)
 		}
 	})
 }

@@ -5,16 +5,14 @@ import "sync"
 
 //日志接口 所有日志类型应该实现该接口
 type Logger interface {
-	// WriteLog 写入日志
-	WriteLog(level LogLevel, info string)
 	// WriteDebugLog 写入调试信息
-	WriteDebugLog(info string)
+	WriteDebugLog(info ...interface{})
 	// WriteInfoLog 写入一般信息
-	WriteInfoLog(info string)
+	WriteInfoLog(info ...interface{})
 	// WriteExceptionLog 写入异常信息
-	WriteExceptionLog(info string)
+	WriteExceptionLog(info ...interface{})
 	// WriteErrorLog 写入错误信息
-	WriteErrorLog(info string)
+	WriteErrorLog(info ...interface{})
 	// LogLevel 获取某个日志等级是否输出
 	LogLevelOutput(level LogLevel) bool
 	// SetLogLevelOutput 设置某个日志等级是否输出
