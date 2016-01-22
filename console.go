@@ -3,8 +3,8 @@ package logger
 import (
 	"container/list"
 	"fmt"
-	"runtime"
 	"sync"
+	"time"
 )
 
 //控制台日志写入器
@@ -47,7 +47,8 @@ func (this *ConsoleLogWriter) AsyncWrite(logList *list.List, mu *sync.Mutex) {
 				}
 			} else {
 				//让出CPU
-				runtime.Gosched()
+				time.Sleep(time.Millisecond)
+				//runtime.Gosched()
 			}
 		}
 	}()

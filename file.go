@@ -5,7 +5,6 @@ import (
 	"container/list"
 	"fmt"
 	"os"
-	"runtime"
 	"sync"
 	"time"
 )
@@ -98,7 +97,8 @@ func (this *FileLogWriter) AsyncWrite(logList *list.List, mu *sync.Mutex) {
 				}
 			} else {
 				//让出CPU
-				runtime.Gosched()
+				time.Sleep(time.Millisecond)
+				//runtime.Gosched()
 			}
 
 		}
