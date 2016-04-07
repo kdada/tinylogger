@@ -11,9 +11,9 @@ import (
 
 //文件日志写入器
 type FileLogWriter struct {
-	file    *os.File      //日志文件
-	writer  *bufio.Writer //写入工具
-	day     int           //文件日期
+	file    *os.File      // 日志文件
+	writer  *bufio.Writer // 写入工具
+	day     int           // 文件日期
 	logList *list.List    // 日志列表
 	logmu   *sync.Mutex   // 日志列表锁
 	closed  bool          // 是否已经停止
@@ -96,8 +96,8 @@ func (this *FileLogWriter) AsyncWrite(logList *list.List, mu *sync.Mutex) {
 					start = start.Next()
 				}
 			} else {
-				//让出CPU
-				time.Sleep(time.Millisecond)
+				//暂停15毫秒
+				time.Sleep(15 * time.Millisecond)
 				//runtime.Gosched()
 			}
 

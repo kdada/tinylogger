@@ -46,8 +46,8 @@ func (this *ConsoleLogWriter) AsyncWrite(logList *list.List, mu *sync.Mutex) {
 					start = start.Next()
 				}
 			} else {
-				//让出CPU
-				time.Sleep(time.Millisecond)
+				//暂停15毫秒
+				time.Sleep(15 * time.Millisecond)
 				//runtime.Gosched()
 			}
 		}
